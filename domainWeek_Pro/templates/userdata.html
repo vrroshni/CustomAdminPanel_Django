@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}
+user's data
+{% endblock %}
+{% block navbarcontent %}
+<a href="{% url 'userData' %}" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"
+  type="submit" id="header-links"> ADMIN </a>
+<a href="{% url 'AddUser' %}" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"
+  type="submit" id="header-links"> ADD_User </a>
+<a href="{% url 'AddAdmin' %}" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"
+  type="submit" id="header-links"> ADD_ADMIN </a>
+
+
+{% endblock %}
+{% block content %}
+<div class="container">
+
+  <div class="row ">
+    <h2 class="page-header text-light text-center mt-4">View & Edit details</h2>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <form action="userData" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="input-group mt-4">
+          <input type="search"   name="q"  class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-primary">OK</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      {% if datas %}
+
+      
+      <table class="table table-bordered mt-4 text-light">
+        <thead>
+          <tr class="text-center ">
+            <th>S.no</th>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+          </tr>
+        </thead>
+        {% for data in datas %}
+
+        <tbody>
+          <tr class="text-center">
+            <td>{{ forloop.counter}}</td>
+            <td>{{ data.username}}</td>
+            <td>{{ data.email}}</td>
+            <td>{% if data.is_superuser %}
+              <button class="OPadminbutton">Admin</button>
+              {% else %}
+              <button class="OPuserbutton">User</button>              
+              {% endif %}
+
+            </td>
+
+            <td><a href="{% url 'Update' data.id %}" class="btn btn-success" style="border-radius: 16px;" onclick="return confirm('Are you sure, you  want edit details of {{data.username}} ?')">UPDATE</a></td>
+            <td><a href="{% url 'Delete' data.id %}" class="btn btn-danger" style="border-radius: 16px;"  onclick="return confirm('Are you sure you  want Delete the User {{data.username}}?')">DELETE</a></td>
+
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

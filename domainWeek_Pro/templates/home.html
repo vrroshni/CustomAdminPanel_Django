@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+home      
+{% endblock %}
+{% block navbarcontent %}
+{% if user.is_superuser %}
+<a href="#" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> DETAILS </a>
+<a href="{% url 'Register' %}" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> ADD_User </a>
+<a href="#" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> ADD_ADMIN </a>
+<a href="{% url 'Logout' %}" class="btn ms-5 text-center" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Logout </a>
+
+
+
+{% else %}
+<a href="{% url 'Logout' %}" class="btn ms-5" style="color: white; background-color: #fd5e14;"type="submit" id="header-links">LOGOUT </a>
+
+
+{% endif %}
+
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1 class="text-light page-header text-center mt-5">
+ {{user.username}}
+ </h1>
+{% endif %}
+
+
+{% if user.is_superuser %}
+<h1 class="text-light page-header text-center mt-5">
+   Hello Admin!!!
+  </h1>
+
+{% else %}
+<h1 class="text-light page-header text-center mt-5">
+   Hello User!!!
+  </h1>
+
+{% endif %}
+{% endblock content %}

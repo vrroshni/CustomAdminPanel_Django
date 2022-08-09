@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% block title %} register {% endblock %} 
+{% block navbarcontent %}
+<a href="{% url 'Login' %}" class="btn ms-5" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Login </a>
+{% endblock %}
+{% block content %}
+<div>
+  <div class="container mt-1">
+    <h1 class="text-center">REGISTRATION PAGE</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+          <h3 class="text-light page-header text-center">
+            Enter Your Details Carefully!!!
+          </h3>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-3"></div>
+        <div class=" col-6 well">
+          <form action="" method="post" autocomplete="off" class="reg-form">
+            {% csrf_token %} 
+            {{form|crispy}}
+            <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

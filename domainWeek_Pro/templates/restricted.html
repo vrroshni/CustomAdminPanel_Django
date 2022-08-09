@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>!Not Allowed</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<style>
+		  .well{
+    box-shadow:2px 2px 15px 0px black;
+  }
+	</style>
+</head>
+{% load static %}
+<body >
+	{% load static %}
+
+	<!------ Include the above in your HEAD tag ---------->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class=" text-center">
+					
+					<h2>
+						
+					<div class="error-details  well text-center" style="margin-top: 150px;">
+
+						Oops!!...... <br> <br>
+						You are not allowed to Access this page</h2>
+						<div class="error-actions text-center">
+							<a href="{% url 'Index' %}" class="btn btn-primary btn-lg"><span
+									class="glyphicon glyphicon-home"></span>
+								Take Me Back </a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
